@@ -1,0 +1,38 @@
+# 依存とビルド産物はコミットしない
+node_modules/
+.next/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# 秘密情報は絶対にコミットしない（.env.example だけがコミット対象）
+.env
+.env.local
+.env*.local
+
+# Vercel CLI のローカルリンク（project id 等）
+.vercel
+
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# 原素材（PSD / AI / RAW / 動画の原本）は Git に入れない ―― 重いうえ、一度 push すると履歴から消せない。
+# 置き場所は portfolio-materials/（リポジトリの外。PLAYBOOK.md 第 1 章）。万一ここに来ても入らないように。
+*.psd
+*.psb
+*.ai
+*.indd
+*.raw
+*.cr2
+*.cr3
+*.nef
+*.arw
+*.dng
+*.heic
+*.mov
+portfolio-materials/
+
+# 上流資料の本地底稿（個人情報・雇用先・未公開の事情を含む）。絶対にリポジトリへ入れない
+docs/design-source/_local/

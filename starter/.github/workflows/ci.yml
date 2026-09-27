@@ -1,0 +1,40 @@
+# CI
+#
+# ⚠️ デプロイはここではなく **Vercel の Git 連携**が行う（main への push → Production、PR → Preview）。
+#    このワークフローは PR / push の品質ゲート（lint + typecheck + build）だけ。
+#    本番に届く経路は Vercel の Git 連携 1 本だけにする。ローカルから `vercel deploy --prod` しない
+#    （経路が 2 本あると片方が間違う → LESSONS.md R-05 / P-13）。
+#
+# ⚠️ NEXT_PUBLIC_* はビルド時に焼き込まれる → Vercel で値を変えたら **再デプロイしないと反映されない**（P-10）。
+#
+# ⚠️ CI 緑 ≠ 見た目が正しい。レイアウト変更は設計稿と実測比較すること（LESSONS.md V-07 / P-1）。
+#
+# このファイル内のコメントは事故の記録です。消さないでください。（LESSONS.md R-09）
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build
+        run: npm run build

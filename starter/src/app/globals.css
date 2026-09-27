@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════════
+   globals.css ― DESIGN.md（ルート）の YAML と 1:1 で同期する。片方だけ変えない。
+   ・トークン: :root → @theme inline で Tailwind クラスへ写像。コメントに無いクラスは存在しない。
+   ・繰り返す「面」（grain / cross-grid / 首屏の光）と節の余白はここの component クラス。
+     一回きりのレイアウトは JSX 側の utility。
+   ・⚠️ --color-X と --text-X を同名にしない（text-X が色になる。B-04。npm run lint が止める）。
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ⚠️ next/font/google は使わない（B-02）。字体は [locale]/layout.tsx の <head> <link> で読む。 */
+
+:root {
+  /* ── color ── */
+  --c-paper: #f3f3f1;        /* ページ地 */
+  --c-ink: #1c1d1c;          /* 本文 */
+  --c-muted: #666862;        /* 補助文字 */
+  --c-rule: #cdcec7;         /* 区切り線 */
+  --c-link-line: #999a92;    /* .text-link の常時線 */
+  --c-surface: #eeefeb;      /* 首屏カード */
+  --c-surface-line: #e4e5df;
+  --c-media: #e8e8e4;        /* 画像の下地・枠 */
+  --c-footer: #141519;
+  --c-footer-ink: #f4f4ee;
+  --c-footer-muted: #bec0c5;
+  --c-footer-line: #767980;
+  --c-accent: #2855be;       /* アクセント（首屏の光・3D・フォーカス系）。作品写真には使わない */
+  --c-accent-soft: #8596d8;
+  --c-accent-pale: #c3cdea;
+  --c-chip-bg: #f9f9f4eb;    /* 画像上のラベル */
+  --c-chip-ink: #32342f;
+  --c-danger: #b3261e;       /* フォームのエラーだけ */
+  --c-focus: #175bd1;
+  --c-selection: #bdcbee;
+
+  /* ── font ──
+     Latin は Manrope。CJK は言語ごとに 1 書体だけ読む（layout.tsx）。
+     ⚠️ 欧文を先に並べる: 和文フォントの欧文字形より Manrope を優先させるため。 */
+  --f-cjk: ui-sans-serif;
+  --f-sans: "Manrope", var(--f-cjk), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --f-mono: "DM Mono", ui-monospace, Consolas, monospace;
+
+  /* ── 字間（見出しのツメ）。CJK では詰めない ―― 欧文用の -0.06em を和文にかけると字が衝突する ── */
+  --ls-hero: -0.06em;
+  --ls-display: -0.055em;
+  --ls-title: -0.05em;
+  --lh-prose: 1.85;
+
+  /* ── motion（DESIGN.md「Motion」）── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-hover: 450ms;
+
+  /* ── layout ── */
+  --pad: clamp(22px, 3.2vw, 58px);
+}
+
+:root:lang(ja) {
+  --f-cjk: "Noto Sans JP";
+  --ls-hero: -0.02em;
+  --ls-display: -0.015em;
+  --ls-title: -0.01em;
+  --lh-prose: 1.95;
+}
+:root:lang(zh) {
+  --f-cjk: "Noto Sans SC";
+  --ls-hero: -0.02em;
+  --ls-display: -0.015em;
+  --ls-title: -0.01em;
+  --lh-prose: 1.95;
+}
+
+@theme inline {
+  /* ── breakpoints: sm = 431px（極小調整）/ md = 801px（唯一の主要な折返し）/ 2xl = 1550px ── */
+  --breakpoint-sm: 26.9375rem;
+  --breakpoint-md: 50.0625rem;
+  --breakpoint-2xl: 96.875rem;
+
+  /* ── colors ── */
+  --color-paper: var(--c-paper);             /* bg-paper / text-paper */
+  --color-ink: var(--c-ink);                 /* text-ink / bg-ink */
+  --color-muted: var(--c-muted);             /* text-muted */
+  --color-rule: var(--c-rule);               /* border-rule */
+  --color-surface: var(--c-surface);         /* bg-surface（首屏カード） */
+  --color-surface-line: var(--c-surface-line); /* border-surface-line */
+  --color-media: var(--c-media);             /* bg-media */
+  --color-footer: var(--c-footer);           /* bg-footer / text-footer */
+  --color-footer-ink: var(--c-footer-ink);   /* text-footer-ink / bg-footer-ink */
+  --color-footer-muted: var(--c-footer-muted); /* text-footer-muted */
+  --color-footer-line: var(--c-footer-line); /* border-footer-line */
+  --color-accent: var(--c-accent);           /* text-accent / bg-accent */
+  --color-chip-bg: var(--c-chip-bg);         /* bg-chip-bg */
+  --color-chip-ink: var(--c-chip-ink);       /* text-chip-ink */
+  --color-danger: var(--c-danger);           /* text-danger / border-danger（フォームのみ） */
+
+  /* ── fonts ── */
+  --font-sans: var(--f-sans);                /* font-sans（既定） */
+  --font-mono: var(--f-mono);                /* font-mono（→ 通常は .mono を使う） */
+
+  /* ── type scale。mobile-first: 無印 = ≤800 / md: = ≥801 ── */
+  --text-hero: clamp(43px, 9vw, 68px);       /* text-hero（≤800） */
+  --text-hero--line-height: 1.075;
+  --text-hero--letter-spacing: var(--ls-hero);
+  --text-hero-lg: clamp(45px, 6.4vw, 98px);  /* md:text-hero-lg */
+  --text-hero-lg--line-height: 1.075;
+  --text-hero-lg--letter-spacing: var(--ls-hero);
+
+  --text-page: 43px;                         /* text-page（ページ h1 ≤800） */
+  --text-page--line-height: 1.12;
+  --text-page--letter-spacing: var(--ls-display);
+  --text-page-lg: clamp(44px, 5.8vw, 86px);  /* md:text-page-lg */
+  --text-page-lg--line-height: 1.12;
+  --text-page-lg--letter-spacing: var(--ls-display);
+
+  --text-section: clamp(30px, 3.9vw, 60px);  /* text-section（大きめ h2。全幅共通） */
+  --text-section--line-height: 1.12;
+  --text-section--letter-spacing: var(--ls-display);
+
+  --text-title: 30px;                        /* text-title（作品名 ≤800） */
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: var(--ls-title);
+  --text-title-lg: clamp(29px, 3.3vw, 50px); /* md:text-title-lg */
+  --text-title-lg--line-height: 1.15;
+  --text-title-lg--letter-spacing: var(--ls-title);
+
+  --text-heading: 26px;                      /* text-heading（節見出し ≤800） */
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: var(--ls-display);
+  --text-heading-lg: 36px;                   /* md:text-heading-lg */
+  --text-heading-lg--line-height: 1.15;
+  --text-heading-lg--letter-spacing: var(--ls-display);
+
+  --text-footer-cta: 48px;                   /* text-footer-cta（≤800） */
+  --text-footer-cta--line-height: 1.1;
+  --text-footer-cta--letter-spacing: var(--ls-hero);
+  --text-footer-cta-lg: clamp(45px, 6vw, 91px); /* md:text-footer-cta-lg */
+  --text-footer-cta-lg--line-height: 1.1;
+  --text-footer-cta-lg--letter-spacing: var(--ls-hero);
+
+  --text-lead: 16px;                         /* text-lead（≤800） */
+  --text-lead--line-height: 1.7;
+  --text-lead-lg: 18px;                      /* md:text-lead-lg */
+  --text-lead-lg--line-height: 1.7;
+
+  --text-prose: 15px;                        /* text-prose（本文 ≤800） */
+  --text-prose--line-height: var(--lh-prose);
+  --text-prose-lg: 16px;                     /* md:text-prose-lg */
+  --text-prose-lg--line-height: var(--lh-prose);
+
+  --text-body: 15px;                         /* text-body（既定本文） */
+  --text-body--line-height: 1.65;
+  --text-ui: 14px;                           /* text-ui */
+  --text-ui--line-height: 1.65;
+  --text-nav: 12px;                          /* text-nav */
+  --text-nav--line-height: 1.65;
+  --text-meta: 11px;                         /* text-meta（注記・キャプション・ラベル） */
+  --text-meta--line-height: 1.65;
+  --text-micro: 10px;                        /* text-micro */
+  --text-micro--line-height: 1.65;
+
+  /* ── spacing ── */
+  --spacing-pad: var(--pad);                 /* px-pad / mx-pad */
+
+  /* ── radius ── */
+  --radius-hero: 24px;                       /* rounded-hero（首屏カード。≤800 は 20px を直書き） */
+  --radius-media: 21px;                      /* rounded-media（作品画像） */
+  --radius-figure: 18px;                     /* rounded-figure（詳細ページの図） */
+  --radius-footer: 28px;                     /* rounded-footer */
+}
+
+/* ═══ base ═══════════════════════════════════════════════════════════ */
+/* html と body の背景は同じ色（overscroll で白が覗かない。next.config.ts の不変条件 3） */
+html { text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background: var(--c-paper); }
+
+body {
+  margin: 0;
+  background: var(--c-paper);
+  color: var(--c-ink);
+  font-family: var(--f-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  /* 見出しは 400（軽く大きく）。太くしない（W-06） */
+  h1, h2, h3 { font-weight: 400; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 4px; }
+  img { display: block; max-width: 100%; }
+  /* Tailwind v4 の preflight は button の cursor を default に戻す */
+  button:not(:disabled) { cursor: pointer; }
+  ::selection { background: var(--c-selection); }
+  /* 和文: 文節で折り返す（対応ブラウザのみ。非対応は通常の折返し）・禁則は strict */
+  :lang(ja) h1, :lang(ja) h2, :lang(ja) h3 { word-break: auto-phrase; }
+  :lang(ja), :lang(zh) { line-break: strict; }
+}
+
+/* ═══ components ═════════════════════════════════════════════════════ */
+@layer components {
+  /* ── 文字の部品 ── */
+  .mono { font-family: var(--f-mono); font-size: 11px; line-height: 1.65; letter-spacing: 0.035em; }
+  /* ── リンクの線（線は 1 本だけ。hover の文字下線と border の二重線にしない）──
+        .text-link … 常時の薄い線の上を、hover で濃い線が左から伸びる
+        .link-line … 普段は線なし、hover / 現在地で左から伸びる（nav / footer / 本文中）
+        .link-arrow … 矢印が向きに沿って少し動く（data-dir） */
+  .text-link {
+    display: inline-block; font-size: 13px; padding-bottom: 5px;
+    background:
+      linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat,
+      linear-gradient(var(--c-link-line), var(--c-link-line)) left bottom / 100% 1px no-repeat;
+    transition: background-size var(--dur-hover) var(--ease-out);
+  }
+  .text-link:hover, .text-link:focus-visible { background-size: 100% 1px, 100% 1px; }
+  .link-line {
+    background: linear-gradient(currentColor, currentColor) left calc(100% - 1px) / 0% 1px no-repeat;
+    padding-bottom: 3px;
+    transition: background-size var(--dur-hover) var(--ease-out);
+  }
+  .link-line:hover, .link-line:focus-visible, .link-line[aria-current="page"],
+  a:hover > .link-line, a:focus-visible > .link-line, a[aria-current="page"] > .link-line,
+  button:hover > .link-line, button[aria-pressed="true"] > .link-line { background-size: 100% 1px; }
+  .link-arrow { display: inline-block; transition: transform var(--dur-hover) var(--ease-out); }
+  a:hover .link-arrow[data-dir="up-right"], a:focus-visible .link-arrow[data-dir="up-right"] { transform: translate(2px, -2px); }
+  a:hover .link-arrow[data-dir="right"] { transform: translateX(3px); }
+  a:hover .link-arrow[data-dir="down"] { transform: translateY(3px); }
+  a:hover .link-arrow[data-dir="up"] { transform: translateY(-3px); }
+  a:hover .link-arrow[data-dir="left"] { transform: translateX(-3px); }
+
+  /* ── 節の縦余白 ── */
+  .section { padding: 65px var(--pad); }
+  @media (min-width: 801px) { .section { padding-block: 105px; } }
+  @media (min-width: 1550px) { .section { padding-block: 130px; } }
+
+  /* ── 本文（ケーススタディ・About）── */
+  .prose-block > p + p { margin-top: 1.1em; }
+
+  /* ── 材質: 颗粒（静的 SVG。本文の面全体には敷かない）── */
+  .grain { position: relative; isolation: isolate; overflow: hidden; }
+  .grain::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+    background: url("/noise.svg"); opacity: 0.28; mix-blend-mode: multiply;
+  }
+
+  /* ── 首屏: 十字グリッド（装飾層。読み上げ順・クリックに影響しない）──
+        64px 間隔 / 十字 10px / 線幅 0.75px の淡い灰色が地。カーソルまわりの十字だけ淡いアクセント色に。
+        ⚠️ 地（::before）と彩色層（.hero-grid-glow）のマスクは同じ 64px タイル・同じ原点。片方だけ変えると十字がずれる。 */
+  .cross-grid { position: relative; isolation: isolate; --mx: 72%; --my: 62%; }
+  .cross-grid::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1; opacity: 0.7;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M27 32h10M32 27v10' fill='none' stroke='%2367666a' stroke-opacity='.22' stroke-width='.75'/%3E%3C/svg%3E");
+  }
+  /* --mx/--my（px）= カーソル位置。HeroPointer が書き込む。未設定時は定位置（右下寄り） */
+  .hero-grid-glow {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(circle 180px at var(--mx) var(--my),
+      rgb(40 85 190 / 0.6) 0%, rgb(56 101 205 / 0.42) 30%, rgb(133 150 216 / 0.2) 65%, rgb(133 150 216 / 0) 100%);
+    --cross-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M27 32h10M32 27v10' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E");
+    -webkit-mask: var(--cross-mask) 0 0 / 64px 64px repeat;
+    mask: var(--cross-mask) 0 0 / 64px 64px repeat;
+  }
+  .hero-glow {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(circle 130px at var(--mx) var(--my), rgb(133 150 216 / 0.16) 0%, rgb(195 205 234 / 0.09) 55%, rgb(195 205 234 / 0) 100%);
+  }
+
+  /* ── 3D（ThreeStage）: canvas は準備ができてから出す（poster → canvas のクロスフェード）── */
+  .three-canvas { opacity: 0; transition: opacity 900ms var(--ease-out); }
+  .three-canvas[data-ready] { opacity: 1; }
+
+  /* ── フォーム（About の #contact）── */
+  .field {
+    width: 100%; border: 0; border-bottom: 1px solid var(--c-rule); background: transparent;
+    padding: 10px 0; font: inherit; color: inherit; border-radius: 0;
+    transition: border-color var(--dur-hover) var(--ease-out);
+  }
+  .field:focus { border-color: var(--c-ink); outline: none; }
+  .field:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 4px; }
+  .field[aria-invalid="true"] { border-color: var(--c-danger); }
+
+  /* ── スクロール演出の初期状態（MotionProvider / HeroPointer が表示へ動かす）──
+        html.js は <head> のスクリプトが描画前に付ける。JS 不調時は 3 秒後に .reveal-fallback で強制表示。 */
+  html.js:not(.reveal-fallback) [data-reveal] { opacity: 0; visibility: hidden; transform: translateY(24px); }
+  html.js:not(.reveal-fallback) [data-reveal="media"] { transform: translateY(36px); }
+  html.js:not(.reveal-fallback) [data-hero-line] > span { transform: translateY(110%); }
+  html.js:not(.reveal-fallback) [data-hero-fade] { opacity: 0; visibility: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    html.js [data-reveal], html.js [data-hero-fade] { opacity: 1; visibility: visible; transform: none; }
+    html.js [data-hero-line] > span { transform: none; }
+    .text-link, .link-line, .link-arrow, .three-canvas, .field { transition: none; }
+  }
+
+  /* ── スキップリンク（WCAG 2.4.1）: 通常は画面外、フォーカス時だけ表示 ── */
+  .skip-link {
+    position: fixed; top: 0.5rem; left: 0.5rem; z-index: 100;
+    padding: 0.5rem 1rem; background: var(--c-ink); color: var(--c-paper); font-size: 13px;
+    transform: translateY(-150%);
+  }
+  .skip-link:focus { transform: translateY(0); }
+}

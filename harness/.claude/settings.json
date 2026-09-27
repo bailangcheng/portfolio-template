@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run build)",
+      "Bash(npm run check)",
+      "Bash(npm run dev)",
+      "Bash(npm run placeholders)",
+      "Bash(npm run images:*)",
+
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+
+      "Bash(npx vercel ls:*)",
+      "Bash(npx vercel inspect:*)",
+      "Bash(dig:*)",
+      "Bash(curl -sI:*)"
+    ],
+    "ask": [
+      "Bash(npx vercel deploy:*)",
+      "Bash(npx vercel env:*)",
+      "Bash(npx vercel promote:*)",
+      "Bash(npx vercel rollback:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": []
+  }
+}

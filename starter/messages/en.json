@@ -1,0 +1,96 @@
+{
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "mainNav": "Main navigation",
+    "home": "{name} — home",
+    "language": "Language",
+    "social": "Social links",
+    "backToTop": "Back to top"
+  },
+  "nav": {
+    "works": "Works",
+    "about": "About",
+    "process": "Process"
+  },
+  "categories": {
+    "fashion": "Fashion",
+    "graphic": "Graphic・Ad",
+    "web": "Web"
+  },
+  "home": {
+    "scroll": "Scroll",
+    "selectedWorks": "Selected work",
+    "allWorks": "All work",
+    "about": "About",
+    "moreAbout": "More about me",
+    "contact": "Contact"
+  },
+  "works": {
+    "title": "Works",
+    "lead": "Fashion, graphic and advertising, and web work.",
+    "filterLabel": "Filter by category",
+    "all": "All",
+    "count": "{count, plural, one {# work} other {# works}}",
+    "empty": "Nothing in this category yet."
+  },
+  "work": {
+    "label": "WORK",
+    "summary": "Summary",
+    "facts": "Role, period, tools and credits",
+    "role": "Role",
+    "period": "Period",
+    "tools": "Tools",
+    "credits": "Credits",
+    "background": "Brief & background",
+    "process": "Process",
+    "outcome": "Outcome",
+    "reflection": "Reflection",
+    "next": "Next work",
+    "allWorks": "All work"
+  },
+  "about": {
+    "title": "About",
+    "timeline": "Background",
+    "skills": "Skills",
+    "tools": "Tools",
+    "interests": "What I want to work on",
+    "contact": "Contact",
+    "contactLead": "For work or anything else, email me or use the form below."
+  },
+  "process": {
+    "title": "Process",
+    "eyebrow": "How this site was made",
+    "steps": "Steps",
+    "stack": "Tools used"
+  },
+  "contact": {
+    "formTitle": "Send a message",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "required": "Required",
+    "submit": "Send",
+    "sending": "Sending…",
+    "sent": "Sent. I’ll get back to you soon.",
+    "note": "Your details are used only to reply to you.",
+    "errors": {
+      "name": "Please enter your name.",
+      "email": "Please check your email address.",
+      "message": "Please enter a message (up to 2000 characters).",
+      "unconfigured": "The form can’t send right now. Please email me instead.",
+      "failed": "Sending failed. Please try again later, or email me instead."
+    }
+  },
+  "notFound": {
+    "title": "This page isn’t here.",
+    "body": "The address may have changed or been removed. Try the work index instead.",
+    "works": "Browse the work",
+    "home": "Back home"
+  },
+  "error": {
+    "title": "Something went wrong.",
+    "body": "This may be a temporary problem. Please try again.",
+    "retry": "Try again",
+    "back": "Back home"
+  }
+}

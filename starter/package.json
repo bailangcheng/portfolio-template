@@ -1,0 +1,41 @@
+{
+  "name": "portfolio-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "node scripts/check-tokens.mjs && node scripts/check-messages.mjs && eslint",
+    "//typecheck": "next typegen で next-env.d.ts（画像 import の型）を先に作る。gitignore 済みなので新しい clone / CI では無い → tsc が画像 import で全滅する",
+    "typecheck": "next typegen && tsc --noEmit",
+    "//check": "★ コミット前はこれ一本。CI と同じ 3 つを回す。",
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "//images": "素材の取り込み: 長辺 3200px・EXIF 除去・連番。例 npm run images -- ../portfolio-materials/02_works/2024_poster-campaign poster-campaign",
+    "images": "node scripts/import-images.mjs",
+    "//placeholders": "サンプル文言・example.com・占位画像の残りを列挙。公開前に 0 件（CHECKLISTS §4）",
+    "placeholders": "node scripts/check-placeholders.mjs"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "next": "16.2.6",
+    "next-intl": "^4.14.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "resend": "^6.11.0",
+    "three": "^0.186.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

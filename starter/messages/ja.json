@@ -1,0 +1,96 @@
+{
+  "a11y": {
+    "skipToContent": "本文へスキップ",
+    "mainNav": "メインナビゲーション",
+    "home": "{name} — ホーム",
+    "language": "言語",
+    "social": "SNS",
+    "backToTop": "ページの先頭へ"
+  },
+  "nav": {
+    "works": "Works",
+    "about": "About",
+    "process": "Process"
+  },
+  "categories": {
+    "fashion": "Fashion",
+    "graphic": "Graphic・Ad",
+    "web": "Web"
+  },
+  "home": {
+    "scroll": "スクロール",
+    "selectedWorks": "精選作品",
+    "allWorks": "作品一覧へ",
+    "about": "About",
+    "moreAbout": "プロフィールを見る",
+    "contact": "Contact"
+  },
+  "works": {
+    "title": "Works",
+    "lead": "ファッション、グラフィック・広告、Web の作品です。",
+    "filterLabel": "カテゴリで絞り込む",
+    "all": "すべて",
+    "count": "{count} 件",
+    "empty": "このカテゴリの作品はまだありません。"
+  },
+  "work": {
+    "label": "WORK",
+    "summary": "概要",
+    "facts": "担当範囲・期間・ツール・クレジット",
+    "role": "担当範囲",
+    "period": "期間",
+    "tools": "使用ツール",
+    "credits": "クレジット",
+    "background": "課題・背景",
+    "process": "プロセス",
+    "outcome": "成果",
+    "reflection": "振り返り",
+    "next": "次の作品",
+    "allWorks": "作品一覧へ"
+  },
+  "about": {
+    "title": "About",
+    "timeline": "経歴",
+    "skills": "スキル",
+    "tools": "ツール",
+    "interests": "やりたい仕事",
+    "contact": "Contact",
+    "contactLead": "お仕事のご相談・ご連絡はメールか下のフォームからどうぞ。"
+  },
+  "process": {
+    "title": "Process",
+    "eyebrow": "このサイトの作り方",
+    "steps": "手順",
+    "stack": "使った道具"
+  },
+  "contact": {
+    "formTitle": "メッセージを送る",
+    "name": "お名前",
+    "email": "メールアドレス",
+    "message": "内容",
+    "required": "必須",
+    "submit": "送信する",
+    "sending": "送信中…",
+    "sent": "送信しました。返信までしばらくお待ちください。",
+    "note": "いただいた内容は返信のためだけに使います。",
+    "errors": {
+      "name": "お名前を入力してください。",
+      "email": "メールアドレスの形式を確認してください。",
+      "message": "内容を入力してください（2000 字まで）。",
+      "unconfigured": "現在フォームから送信できません。お手数ですがメールでご連絡ください。",
+      "failed": "送信に失敗しました。時間をおいて再度お試しいただくか、メールでご連絡ください。"
+    }
+  },
+  "notFound": {
+    "title": "ページが見つかりません。",
+    "body": "URL が変わったか、削除された可能性があります。作品一覧からお探しください。",
+    "works": "作品一覧へ",
+    "home": "ホームへ"
+  },
+  "error": {
+    "title": "問題が発生しました。",
+    "body": "一時的な問題の可能性があります。もう一度お試しください。",
+    "retry": "再試行",
+    "back": "ホームへ"
+  }
+}

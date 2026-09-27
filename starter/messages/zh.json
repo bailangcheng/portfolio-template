@@ -1,0 +1,96 @@
+{
+  "a11y": {
+    "skipToContent": "跳到正文",
+    "mainNav": "主导航",
+    "home": "{name} — 首页",
+    "language": "语言",
+    "social": "社交链接",
+    "backToTop": "回到顶部"
+  },
+  "nav": {
+    "works": "Works",
+    "about": "About",
+    "process": "Process"
+  },
+  "categories": {
+    "fashion": "Fashion",
+    "graphic": "Graphic・Ad",
+    "web": "Web"
+  },
+  "home": {
+    "scroll": "向下滚动",
+    "selectedWorks": "精选作品",
+    "allWorks": "查看全部作品",
+    "about": "About",
+    "moreAbout": "查看个人介绍",
+    "contact": "Contact"
+  },
+  "works": {
+    "title": "Works",
+    "lead": "服装、平面・广告与网页作品。",
+    "filterLabel": "按类别筛选",
+    "all": "全部",
+    "count": "{count} 件",
+    "empty": "这个类别暂时还没有作品。"
+  },
+  "work": {
+    "label": "WORK",
+    "summary": "概要",
+    "facts": "负责范围・周期・工具・署名",
+    "role": "负责范围",
+    "period": "周期",
+    "tools": "使用工具",
+    "credits": "署名",
+    "background": "课题・背景",
+    "process": "过程",
+    "outcome": "成果",
+    "reflection": "回顾",
+    "next": "下一个作品",
+    "allWorks": "查看全部作品"
+  },
+  "about": {
+    "title": "About",
+    "timeline": "经历",
+    "skills": "技能",
+    "tools": "工具",
+    "interests": "想做的工作",
+    "contact": "Contact",
+    "contactLead": "工作洽谈或联系，请发邮件或使用下方表单。"
+  },
+  "process": {
+    "title": "Process",
+    "eyebrow": "这个网站的做法",
+    "steps": "步骤",
+    "stack": "使用的工具"
+  },
+  "contact": {
+    "formTitle": "发送消息",
+    "name": "姓名",
+    "email": "邮箱",
+    "message": "内容",
+    "required": "必填",
+    "submit": "发送",
+    "sending": "发送中…",
+    "sent": "已发送，我会尽快回复。",
+    "note": "你提供的信息只用于回复。",
+    "errors": {
+      "name": "请输入姓名。",
+      "email": "请检查邮箱格式。",
+      "message": "请输入内容（2000 字以内）。",
+      "unconfigured": "表单暂时无法发送，请直接发邮件联系。",
+      "failed": "发送失败。请稍后重试，或直接发邮件联系。"
+    }
+  },
+  "notFound": {
+    "title": "找不到这个页面。",
+    "body": "网址可能已变更或被删除。可以从作品一览重新找找看。",
+    "works": "查看作品一览",
+    "home": "回到首页"
+  },
+  "error": {
+    "title": "出了点问题。",
+    "body": "可能是暂时性的问题，请再试一次。",
+    "retry": "重试",
+    "back": "回到首页"
+  }
+}
